@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html >
+
+<body ng-app="firstmod">
+<script src="angular.min.js"></script>
+<script>
+var app=angular.module('firstmod',[]);
+app.service('vk',function()
+{
+this.login=function(x,y){
+if(x=="admin" && y=="admin1")
+{
+return true;
+}
+else
+{
+return false;
+}
+}
+});
+app.controller("firstcont", function($scope,$rootScope,vk){
+$scope.us='';
+$scope.pw='';
+$rootScope.login=true;
+$rootScope.home=false;
+
+$scope.button_clicked=function()
+{
+var check = vk.login($scope.us,$scope.pw)
+if(check==true)
+{
+$rootScope.login=false;
+$rootScope.home=true;
+$rootScope.message = "Welcomne to vk angular"
+}
+else
+{
+$rootScope.login=true;
+$rootScope.home=false;
+$rootScope.message = "invalid contents.....Try again...."
+}
+}
+});
+
+app.controller("secondcont",function($scope,$rootScope){
+$scope.us='';
+$scope.pw='';
+$scope.logout=function()
+  {
+    $rootScope.login=true;
+	$rootScope.home=false;
+	}
+  });
+</script>
+<style>
+body
+{
+text-align:center;
+background:green;
+color:Yellow
+}
+</style>
+
+<div  ng-controller="firstcont" ng-show="login"> 
+ User name:<br>
+  <input type="text" ng-model="us" placeholder="Enter user name" >
+  <br>
+  Password:<br>
+  <input type="text" ng-model="pw"  placeholder="Enter your password">
+  <br>{{message}}
+<br><br>
+  <input type="submit" value="Submit" ng-click="button_clicked()">
+
+</div>
+<div ng-controller="secondcont" ng-show="home">
+successfully login 
+
+{{message}}
+<button ng-click="logout()">LogOut</button>
+
+ </div> 
+
+
+
+</body>
+</html>

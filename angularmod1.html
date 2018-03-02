@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<script src="angular.min.js"></script>
+<script>
+angular.module('firstmod',[]).controller('firstcont', function($scope){
+$scope.name='';
+$scope.lname='';
+$scope.mname='';
+$scope.age='';
+$scope.myTar='';
+$scope.myVar='';
+$scope.fullname=function(){
+return $scope.name + "  " + $scope.lname + " " + $scope.mname + " " +$scope.age + " " +$scope.myTar + " " +$scope.myVar;
+}
+
+});
+</script>
+<body>
+<style>
+body
+{
+text-align:center;
+background:green;
+color:Yellow
+}
+</style>
+<form action="/action_page.php">
+<div ng-app="firstmod" ng-controller="firstcont">
+ 
+<p>Input something in the input box:</p>
+<p>First Name : <input type="text" ng-model="name" placeholder="Enter name here"></p>
+<p1>Last Name:<input type="text" ng-model="lname" placeholder="Enter name here"></p1>
+<p>Middle Name:<input type="text" ng-model="mname" placeholder="Enter name here"></p>
+<p2> Age: <input type="number" ng-model="age" placeholder="Enter your age here"></p2><br><BR>
+
+Above information is correct:
+<p3><input type="checkbox" ng-model="myTar"></p3>
+<p4 ng-show="myVar">YES</p4><br><br><br>
+
+Pick Your Gender:
+<input type="radio" ng-model="myVar" value="Male">Male<br>
+<input type="radio" ng-model="myVar" value="Female">Female<br>
+<input type="radio" ng-model="myVar" value="Others">Others<br>
+
+Select a Date:<br>
+<j><input type="number" ng-model="date" ></j1>
+
+<h1>Hello {{fullname()}}</h1><br>
+
+
+
+
+<p3>Address:<input type="text"></p3><br><br>
+</div>
+  <input type="submit" value="Submit">
+</form> 
+
+<p>If you click the "Submit" button, the form-data will be sent to a page called "/action_page.php".</p>
+
+</body>
+</html>

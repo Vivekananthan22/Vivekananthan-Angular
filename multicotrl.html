@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html >
+
+<body ng-app="firstmod">
+<script src="angular.min.js"></script>
+<script>
+angular.module("firstmod",[]).
+controller("firstcont", function($scope,$rootScope){
+$rootScope.home=false;
+$scope.login=true;
+$scope.button_clicked=function()
+{
+if($scope.us=="vivek" && $scope.pw=="thas")
+{
+$scope.login=false;
+$rootScope.home=true;
+}
+else
+{
+$scope.login=true;
+$rootScope.home=false;
+}
+}
+}).controller("secondcont",function($scope){
+});
+</script>
+<style>
+body
+{
+text-align:center;
+background:green;
+color:Yellow
+}
+</style>
+
+<div  ng-controller="firstcont" ng-show="login"> 
+ User name:<br>
+  <input type="text" ng-model="us" placeholder="Enter user name" >
+  <br>
+  Password:<br>
+  <input type="text" ng-model="pw"  placeholder="Enter your password">
+  
+<br><br>
+  <input type="submit" value="Submit" ng-click="button_clicked()">
+
+</div>
+<div ng-controller="secondcont" ng-show="home">
+welcome to {{message}}
+</div>
+
+
+</body>
+</html>
